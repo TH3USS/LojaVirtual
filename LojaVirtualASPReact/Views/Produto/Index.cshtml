@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Loja Virtual";
+}
+
+<div id="loja-virtual"></div>
+
+@section Scripts {
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script type="text/babel">
+        const App = () => {
+            const [produtos, setProdutos] = React.useState([]);
+            const [carrinho, setCarrinho] = React.useState([]);
+
+            React.useEffect(() => {
+                fetch('/Produto/GetProdutos')
+                    .then(response => response.json())
+                    .then(data => setProdutos(data))
+                    .catch(error => console.error('Erro ao buscar produtos:', error));
+            }, []);
+
+            const adicionarAoCarrinho = (produto) => {
+                setCarrinho([...carrinho, produto]);
+            };
+
+            const totalCarrinho = carrinho.reduce((total, item) => total + item.preco, 0);
+
+            const finalizarCompra = () => {
+                alert('Pedido enviado!');
+                setCarrinho([]);
+            };
+
+            return (
+                <div>
+                    <h1>Loja Virtual</h1>
+                    <h2>Produtos:</h2>
+                    <ul>
+                        {produtos.map(produto => (
+                            <li key={produto.id}>
+                                {produto.nome} - R$ {produto.preco.toFixed(2)}
+                                <button onClick={() => adicionarAoCarrinho(produto)}>Adicionar ao Carrinho</button>
+                            </li>
+                        ))}
+                    </ul>
+                    <h2>Carrinho:</h2>
+                    <ul>
+                        {carrinho.map((item, index) => (
+                            <li key={index}>{item.nome} - R$ {item.preco.toFixed(2)}</li>
+                        ))}
+                    </ul>
+                    <h3>Total: R$ {totalCarrinho.toFixed(2)}</h3>
+                    <button onClick={finalizarCompra}>Finalizar Compra</button>
+                </div>
+            );
+        };
+
+        ReactDOM.createRoot(document.getElementById('loja-virtual')).render(<App />);
+    </script>
+}
