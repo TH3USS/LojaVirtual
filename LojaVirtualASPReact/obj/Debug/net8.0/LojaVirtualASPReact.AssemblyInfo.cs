@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LojaVirtualASPReact")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+69d345e5d477ed739d0fee3bea5a777870bc7a6b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be7f8fbb50b2f1c298d1f239ce79b34314417e16")]
 [assembly: System.Reflection.AssemblyProductAttribute("LojaVirtualASPReact")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LojaVirtualASPReact")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
